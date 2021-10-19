@@ -1,20 +1,24 @@
-<div class="posts">
-  {{#each posts}}
-  <article class="card">
-    <div class="card-header flex-row justify-space-between">
-      <h2>
-        <a href="/blog/{{id}}">{{title}}</a>
-      </h2>
-    </div>
-    <div class="card-body">
-      <div>
-        Date Posted
-        {{formatDate createdAt}}
-        by
-        {{user.user_name}}
-      </div>
-      {{body}}
-    </div>
-  </article>
-  {{/each}}
+<div class="container mb-4">
+  <div class="text-left">
+    <a href="/post" type="button" class="btn btn-primary btn-lg">+ New Post</a>
+  </div>
 </div>
+
+{{#each posts as |post|}}
+  <div class="row justify-content-center">
+    <div class="card col-lg-9 mb-3">
+      <div class="card-header bg-success">
+        Posted by
+        {{user.username}}
+        on
+        {{format_date post.date}}
+      </div>
+      <div class="card-body bg-dark text-light">
+        <h5 class="card-title">{{post.title}}</h5>
+        <p class="card-text">{{post.post_text}}</p>
+        <a href="#" class="btn btn-primary">Leave a Comment!</a>
+      </div>
+    </div>
+  </div>
+
+{{/each}}
