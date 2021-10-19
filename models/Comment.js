@@ -11,25 +11,32 @@ Comment.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    user_name: {
+    comment_text: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    date: {
-      type: DataTypes.DATE,
+    user_id: {
+      type: DataTypes.INTEGER,
       allowNull: false,
+      references: {
+        model: 'user',
+        key: 'id'
+      }
     },
-    // TODO: Need time on commment?
-    time: {
-      type: DataTypes
+    post_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'post',
+        key: 'id'
+      }
     }
   },
   {
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: "gallery",
+    modelName: "comment",
   }
 );
 
-module.exports = Gallery;
+module.exports = Comment;
