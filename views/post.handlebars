@@ -1,0 +1,56 @@
+<div class="post">
+  <article class="card">
+    <div class="card-header flex-row justify-space-between">
+      <h2>{{thisPost.title}}</h2>
+
+      <div>
+        Posted
+        {{formatDate thisPost.createdAt}}
+        by
+        {{thisPost.user.user_name}}
+      </div>
+    </div>
+
+    <div class="card-body">
+      {{thisPost.content}}
+    </div>
+  </article>
+
+  {{#if thisPost.comments}}
+  <section class="card">
+    <div class="card-header">
+      <h3>Comments</h3>
+    </div>
+
+    <div class="card-body">
+      {{#each thisPost.comments}}
+      <div>
+        <p>
+          {{content}}
+        </p>
+
+        <p>
+          &mdash; {{user.user_name}}, {{formatDate createdAt}}
+        </p>
+      </div>
+      {{/each}}
+    </div>
+  </section>
+  {{/if}}
+
+  <form id="new-comment-form" class="card">
+    <div class="card-header">
+      <h3>New Comment</h3>
+    </div>
+
+    <div class="card=body">
+      <input type="hidden" name="post-id" value="{{thisPost.id}}"/>
+
+      <label class="form-label" for="comment-body">Comment</label>
+
+      <textarea name="comment-body" class="form-input"></textarea>
+
+      <button type="submit" class="btn">submit</button>
+    </div>
+  </form>
+</div>
