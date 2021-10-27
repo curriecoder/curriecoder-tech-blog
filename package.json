@@ -1,0 +1,21 @@
+{
+  "name": "curriecoder-tech-blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "seed": "node seeds"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/curriecoder/curriecoder-tech-blog.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/curriecoder/curriecoder-tech-blog/issues"
+  },
+  "homepage": "https://github.com/curriecoder/curriecoder-tech-blog#readme"
+}
