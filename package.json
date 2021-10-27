@@ -19,6 +19,7 @@
   "homepage": "https://github.com/curriecoder/curriecoder-tech-blog#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "express-handlebars": "^5.3.4",
     "express-session": "^1.17.2"
   }
 }
