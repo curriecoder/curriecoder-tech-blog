@@ -5,8 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "seed": "node seeds"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -17,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/curriecoder/curriecoder-tech-blog/issues"
   },
-  "homepage": "https://github.com/curriecoder/curriecoder-tech-blog#readme"
+  "homepage": "https://github.com/curriecoder/curriecoder-tech-blog#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
