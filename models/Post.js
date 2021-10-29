@@ -1,5 +1,4 @@
-const { all } = require("bluebird");
-const { Model, DataTypes } = require("sequelizew");
+const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
 class Post extends Model {}
