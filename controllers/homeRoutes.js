@@ -15,7 +15,6 @@ router.get("/", async (req, res) => {
     const posts = dbPostData.map((post) => post.get({ plain: true }));
 
     res.render("homepage", { posts, loggedIn: req.session.loggedIn });
-  
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -33,6 +32,26 @@ router.get("/login", (req, res) => {
 
 router.get("/signup", (req, res) => {
   res.render("signup");
+});
+
+// GET route for dashboard
+router.get("/dashboard", async (req, res) => {
+  if (!req.session.loggedIn) {
+    res.redirect("/login");
+    return;
+  }
+  try {
+    const userData = await User.findByPk(req.session.user_id, {
+      include: [{ model: Post }, { model: Comment }],
+    });
+    const posts = userData.get({ plain: true });
+    res.render("dashboard", {
+      posts,
+      loggedIn: req.session.loggedIn,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 router.get("/post/:id", (req, res) => {
