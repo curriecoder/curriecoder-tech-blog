@@ -30,3 +30,5 @@ router.post('/', withAuth, async (req, res) => {
 // UPDATE to edit a post, logged in
 
 // DELETE a post, logged in
+
+module.exports = router;

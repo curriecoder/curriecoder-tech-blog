@@ -2,7 +2,7 @@ const withAuth = require("../utils/auth");
 const { Post, User, Comment } = require("../models");
 const router = require("express").Router();
 
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const dbPostData = await Post.findAll({
       include: [
@@ -74,7 +74,7 @@ router.get("/post/:id", (req, res) => {
 // GET for post
 router.get("/post", (req, res) => {
   if (!req.session.loggedIn) {
-    req.redirect("/login");
+    res.redirect("/login");
     return;
   }
   res.render("post", { loggedIn: req.session.loggedIn });
