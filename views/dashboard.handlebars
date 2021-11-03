@@ -1,0 +1,26 @@
+<div class="container mb-4">
+  <div class="text-left">
+    <a href="/post" type="button" class="btn btn-primary btn-lg">New Post</a>
+  </div>
+</div>
+
+{{#if posts.length}}
+  <h2>Your Posts</h2>
+  {{#each posts as |post|}}
+    <div class="row justify-content-center">
+      <div class="card col-lg-9 mb-3">
+        <div class="card-header bg-success">
+          Posted by
+          {{user.username}}
+          on
+          {{format_date post.date}}
+        </div>
+        <div class="card-body bg-dark text-light">
+          <h5 class="card-title">{{post.title}}</h5>
+          <p class="card-text">{{post.post_text}}</p>
+          <a href="#" class="btn btn-primary">Leave a Comment!</a>
+        </div>
+      </div>
+    </div>
+  {{/each}}
+{{/if}}
