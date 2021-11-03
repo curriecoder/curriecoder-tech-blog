@@ -2,10 +2,24 @@ const router = require("express").Router();
 const { Post, Comment, User } = require("../../models/");
 const withAuth = require("../../utils/auth");
 
-router.post('/', withAuth, async (req, res) => {
+
+router.get("/", async (req, res) => {
   try {
     const postData = await Post.findAll({
-      attributes: ['id', 'title', 'post_text', 'created_at'],
+      attributes: ["id", "title", "post_body", "created_at"],
+    });
+    res.status(200).json(postData);
+  } catch (err) {
+    res.json(400).json(err);
+  }
+});
+
+// POST new post, logged in
+router.post('/', withAuth, async (req, res) => {
+  try {
+    const postData = await Post.create({
+      ...req.body,
+      user_id: req.session.user_id,
     });
     res.status(200).json(postData);
   } catch (err) {
@@ -13,13 +27,6 @@ router.post('/', withAuth, async (req, res) => {
   }
 });
 
-router.post("/", withAuth, async (req, res) => {
-  try {
-    const postData = await Post.create({
-      attributes: ["id", "title", "post_text", "createdAt"],
-    });
-    res.status(200).json(postData);
-  } catch (err) {
-    res.status(400).json(err);
-  }
-});
+// UPDATE to edit a post, logged in
+
+// DELETE a post, logged in
