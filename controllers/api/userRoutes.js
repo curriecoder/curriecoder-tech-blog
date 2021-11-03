@@ -1,6 +1,16 @@
 const router = require("express").Router();
 const { User } = require("../../models");
 
+// GET all users
+router.get("/", async (req, res) => {
+  try {
+    const dbUserData = await User.findAll();
+    res.status(200).json(dbUserData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 // GET one user by ID
 router.get("/:id", async (req, res) => {
   try {
@@ -13,5 +23,42 @@ router.get("/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+// POST for login
+router.post("/login", async (req, res) => {
+  try {
+    const dbUserData = await User.findOne({
+      where: {
+        email: req.body.email,
+      },
+    });
+    if (!dbUserData) {
+      res
+        .status(400)
+        .json({ message: "The email or password does not match our records." });
+      return;
+    }
+    const validPassword = await dbUserData.checkPassword(req.body.password);
+
+    if (!validPassword) {
+      res
+        .status(400)
+        .json({ message: "The email or password does not match our records." });
+      return;
+    }
+
+    req.session.save(() => {
+      req.session.user_id = dbUserData.id;
+      req.session.email = dbUserData.email;
+      req.session.loggedIn = true;
+
+      res.status(200).json({ message: "Logged in!"});
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// POST new user
 
 module.exports = router;
