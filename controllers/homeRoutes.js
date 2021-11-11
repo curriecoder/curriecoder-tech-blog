@@ -46,6 +46,7 @@ router.get("/dashboard", async (req, res) => {
     });
     const posts = userData.get({ plain: true });
     res.render("dashboard", {
+      layout: "main",
       posts,
       loggedIn: req.session.loggedIn,
     });
