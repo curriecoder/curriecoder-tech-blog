@@ -1,3 +1,5 @@
+// TODO: posting is currently loading with all user values as NaN
+
 const router = require("express").Router();
 const { Post, Comment, User } = require("../../models/");
 const withAuth = require("../../utils/auth");
@@ -6,7 +8,7 @@ const withAuth = require("../../utils/auth");
 router.get("/", async (req, res) => {
   try {
     const postData = await Post.findAll({
-      attributes: ["id", "title", "post_body", "created_at"],
+      attributes: ["user_id", "title", "post_text", "date"],
     });
     res.status(200).json(postData);
   } catch (err) {
@@ -19,7 +21,7 @@ router.post('/', withAuth, async (req, res) => {
   try {
     const postData = await Post.create({
       ...req.body,
-      user_id: req.session.user_id,
+      user_id: req.session.user_id, 
     });
     res.status(200).json(postData);
   } catch (err) {

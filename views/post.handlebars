@@ -7,14 +7,14 @@
 
       <div>
         Posted
-        {{formatDate thisPost.createdAt}}
+        {{formatDate thisPost.date}}
         by
         {{thisPost.user.user_name}}
       </div>
     </div>
 
     <div class="card-body">
-      {{thisPost.content}}
+      {{thisPost.post_text}}
     </div>
   </article>
 
@@ -24,15 +24,15 @@
       <h3>Comments</h3>
     </div>
 
-    <div class="card-body">
+    <div class="card-footer">
       {{#each thisPost.comments}}
       <div>
         <p>
-          {{content}}
+          {{comment_text}}
         </p>
 
         <p>
-          &mdash; {{user.user_name}}, {{formatDate createdAt}}
+          &mdash; {{user.user_name}}, {{formatDate comment.date}}
         </p>
       </div>
       {{/each}}
