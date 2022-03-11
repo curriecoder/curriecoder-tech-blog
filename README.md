@@ -13,6 +13,7 @@ This project was created as a way to try out a basic full stack application usin
 There are no installations required to use this application. Use the deployed link above to access the app.
 
 ## Usage
+Test login: test@test.com  password: password
 
 To use the application, follow the link above to the deployed page on Heroku. There, users can make an account and start posting blog entries about technologies that are of interest to them.
 
