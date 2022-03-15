@@ -12,9 +12,10 @@ const seedDatabase = async () => {
 
   const posts = await Post.bulkCreate(postSeedData);
 
+  // TODO: no information about comments used currently...
   for (comment of commentSeedData) {
     const newComment = await Comment.create({
-      ...comment,
+      ...Comment,
       // Attach a random user ID to each comment
       user_id: users[Math.floor(Math.random() * users.length)].id,
     });

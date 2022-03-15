@@ -16,8 +16,9 @@
       <div class="card-body bg-dark text-light">
         <h5 class="card-title">{{post.title}}</h5>
         <p class="card-text">{{post.post_text}}</p>
+        {{#if loggedIn}}
         <a href="#" class="btn btn-primary">Leave a Comment!</a>
-      </div>
+        {{/if}}      </div>
     </div>
   </div>
 {{/each}}
