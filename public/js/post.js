@@ -4,12 +4,13 @@ const newPostHandler = async (event) => {
   event.preventDefault();
 
   const text = document.querySelector('#post-body').value.trim();
+  const title = document.querySelector('#post-title').value.trim();
   // might need user info here or we can get it off of req.session.user
 
   if (text) {
     const response = await fetch('/api/post', {
       method: 'POST',
-      body: JSON.stringify({ text }),
+      body: JSON.stringify({ title, text }),
       headers: { 'Content-type': 'application/json' },
     });
 
