@@ -17,7 +17,7 @@ router.get("/", async (req, res) => {
 });
 
 // POST new post, logged in
-router.post('/', withAuth, async (req, res) => {
+router.post('/new-post', withAuth, async (req, res) => {
   try {
     const postData = await Post.create({
       ...req.body,

@@ -3,7 +3,7 @@
 const newPostHandler = async (event) => {
   event.preventDefault();
 
-  const text = document.querySelector('#post-text').value.trim();
+  const text = document.querySelector('#post-body').value.trim();
   // might need user info here or we can get it off of req.session.user
 
   if (text) {
@@ -22,5 +22,5 @@ const newPostHandler = async (event) => {
 };
 
 document
-  .querySelector('.post-form')
+  .querySelector('#post-form')
   .addEventListener('submit', newPostHandler);
